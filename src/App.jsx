@@ -1,8 +1,8 @@
-import React, { useState, createContext } from 'react'
+import React, { useState, createContext } from 'react';
 import Todos from './components/Todos';
 import TodoForm from './components/TodoForm';
 
-export const TodoContext = createContext()
+export const TodoContext = createContext();
 
 function App() {
   const [todos, setTodos] = useState([
@@ -10,16 +10,22 @@ function App() {
       id: 1,
       title: 'Finish Progate React Course',
       completed: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     {
       id: 2,
       title: 'Have lunch with Guru Domba',
       completed: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     {
       id: 3,
       title: 'Study React with Ninja Ken',
       completed: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
   ]);
 
@@ -27,6 +33,7 @@ function App() {
     const updatedTodos = todos.map((todo) => {
       if (todo.id === todoId) {
         todo.completed = !todo.completed;
+        todo.updatedAt = new Date();
       }
       return todo;
     });
@@ -42,6 +49,8 @@ function App() {
       id: todos.length + 1,
       title: todoTitle,
       completed: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
 
     const updatedTodos = todos.concat(newTodo);
@@ -54,7 +63,7 @@ function App() {
   };
 
   return (
-    // Bungkus app dengan provider dari context
+    
     <TodoContext.Provider value={{ toggleCompleted, deleteTodo }}>
       <div style={styles.container}>
         <h1 style={styles.title}>My Todo List</h1>
@@ -62,9 +71,8 @@ function App() {
         <Todos todos={todos} />
       </div>
     </TodoContext.Provider>
-  )
+  );
 }
-
 
 const styles = {
   container: {
@@ -75,8 +83,8 @@ const styles = {
     minHeight: '100vh',
     padding: '20px',
     textAlign: 'center',
-    margin: 'auto', 
-    maxWidth: '600px', 
+    margin: 'auto',
+    maxWidth: '600px',
   },
   title: {
     fontSize: '36px',
@@ -84,4 +92,5 @@ const styles = {
   },
 };
 
-export default App
+export default App;
+

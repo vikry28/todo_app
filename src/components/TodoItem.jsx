@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
-import { TodoContext } from '../App'
+import React, { useContext } from 'react';
+import { TodoContext } from '../App';
 
 const TodoItem = ({ todo }) => {
-  const { toggleCompleted, deleteTodo } = useContext(TodoContext)
+  const { toggleCompleted, deleteTodo } = useContext(TodoContext);
   const getTodoTitleStyle = () => {
     if (todo.completed === true) {
       return { textDecoration: 'line-through' };
@@ -10,7 +10,10 @@ const TodoItem = ({ todo }) => {
       return { textDecoration: 'none' };
     }
   };
-  
+
+  const formatDate = (date) => {
+    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+  };
 
   return (
     <div style={styles.todoItem}>
@@ -20,6 +23,7 @@ const TodoItem = ({ todo }) => {
         onChange={() => toggleCompleted(todo.id)}
       />
       <p style={{ ...styles.todoTitle, ...getTodoTitleStyle() }}>{todo.title}</p>
+      <p style={styles.date}>{formatDate(todo.createdAt)}</p>
       <button style={styles.button} onClick={() => deleteTodo(todo.id)}>
         x
       </button>
@@ -40,6 +44,15 @@ const styles = {
     height: '18px',
     width: '18px',
   },
+  todoTitle: {
+    flex: 1,
+    marginLeft: '10px',
+    textAlign: 'left',
+  },
+  date: {
+    marginRight: '10px',
+    fontSize: '14px',
+  },
   button: {
     backgroundColor: '#BB0000',
     color: '#fff',
@@ -50,6 +63,6 @@ const styles = {
     cursor: 'pointer',
     fontSize: '16px',
   },
-}
+};
 
-export default TodoItem
+export default TodoItem;

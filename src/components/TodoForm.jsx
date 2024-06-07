@@ -4,10 +4,10 @@ const TodoForm = ({ addTodo }) => {
   const [title, setTitle] = useState(''); // Gunakan useState di sini
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    addTodo(title)
-    setTitle('') // Reset title-nya
-  }
+    event.preventDefault();
+    addTodo(title);
+    setTitle(''); // Reset title-nya
+  };
 
   const handleChangeTitle = (event) => {
     setTitle(event.target.value);
@@ -29,7 +29,7 @@ const TodoForm = ({ addTodo }) => {
           placeholder="Add your Todo"
           style={styles.formInput}
           onChange={(event) => {
-            handleChangeTitle(event)
+            handleChangeTitle(event);
           }}
           value={title}
         />
@@ -55,4 +55,5 @@ const styles = {
   },
 };
 
-export default TodoForm
+export default TodoForm;
+
